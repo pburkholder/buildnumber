@@ -1,0 +1,118 @@
+{
+  "revision_id": "eeddd5f241d8c04a37e86947906befe88621772f",
+  "name": "myapp",
+  "run_list": [
+    "recipe[base::default]",
+    "recipe[myapp::default]"
+  ],
+  "cookbook_locks": {
+    "base": {
+      "version": "0.1.0",
+      "identifier": "fc79b25dc1ac842bdf342a65a2dda0d83d929c12",
+      "dotted_decimal_identifier": "71065501115198596.12348839141155549.176850606398482",
+      "source": "../base",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "fcbc54fca23fddd2db85e15572b9c39714974736",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/HEAD -> origin/master",
+          "origin/master"
+        ]
+      },
+      "source_options": {
+        "path": "../base"
+      }
+    },
+    "myapp": {
+      "version": "0.1.0",
+      "identifier": "90a39ad0ad73ff3b245e1c5ede2a60a437349a73",
+      "dotted_decimal_identifier": "40712281967653887.16647010247433770.106258417097331",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "fcbc54fca23fddd2db85e15572b9c39714974736",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/HEAD -> origin/master",
+          "origin/master"
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    },
+    "apt": {
+      "version": "2.7.0",
+      "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
+      "dotted_decimal_identifier": "6409580415309396.17870749399956400.55392231660638",
+      "cache_key": "apt-2.7.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+        "version": "2.7.0"
+      }
+    },
+    "httpd": {
+      "version": "0.2.11",
+      "identifier": "3c562c6ac6ac554b4a11a0ad4c522fab246bf8b3",
+      "dotted_decimal_identifier": "16983247372594261.21192062823910482.52412096968883",
+      "cache_key": "httpd-0.2.11-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io/api/v1/cookbooks/httpd/versions/0.2.11/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/httpd/versions/0.2.11/download",
+        "version": "0.2.11"
+      }
+    }
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "base",
+        ">= 0.0.0"
+      ],
+      [
+        "myapp",
+        ">= 0.0.0"
+      ],
+      [
+        "apt",
+        "= 2.7.0"
+      ],
+      [
+        "httpd",
+        "= 0.2.11"
+      ]
+    ],
+    "dependencies": {
+      "base (0.1.0)": [
+        [
+          "apt",
+          ">= 0.0.0"
+        ],
+        [
+          "httpd",
+          ">= 0.0.0"
+        ]
+      ],
+      "apt (2.7.0)": [
+
+      ],
+      "httpd (0.2.11)": [
+
+      ],
+      "myapp (0.1.0)": [
+        [
+          "base",
+          ">= 0.0.0"
+        ]
+      ]
+    }
+  }
+}

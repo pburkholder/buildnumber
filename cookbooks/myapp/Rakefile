@@ -1,0 +1,60 @@
+# Encoding: utf-8
+
+require 'rspec/core/rake_task'
+require 'bundler'
+require 'json'
+
+def json_data
+    './files/default/build.json'
+end
+
+def build_data
+    @build_data ||= begin
+      JSON.parse(File.read(json_data))
+    rescue
+      {'build' => 0 }
+    end
+end
+
+def build_number
+  build_data['build']
+end
+
+desc "Increment the build number"
+task :bump do
+    build_data['build'] += 1
+    Rake::Task['write'].invoke
+end
+
+task :write do
+    File.open(json_data, 'w') do |f|
+      f.write(JSON.pretty_generate(build_data))
+    end
+end
+
+desc "Report on the Build Number"
+task :report do
+    puts build_number
+end
+
+desc "Bump and regen"
+task :build do
+  File.unlink 'Policyfile.lock.json'
+  sh('chef install -D')
+  sh("chef push myapp-0.1.0-#{build_number}")
+end
+
+desc 'Reset builds to zero'
+task :zero do
+  {'build' => 0 }
+  Rake::Task['write'].invoke
+end
+
+desc "Tag and push"
+task :tag do
+    v="0.1.0-#{build_number}"
+    sh("git commit -am #{v}")
+    sh("git tag -m #{v} #{v}")
+    sh("git push origin #{v}")
+    sh("git push origin master")
+end
